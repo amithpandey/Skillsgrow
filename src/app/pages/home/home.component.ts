@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   public x: any;
   public mainWidth: number;
   public smallDevice: boolean = false;
+  public discoverBy: string = 'allCourses';
 
   constructor(public global: Global, public homeproxy: HomeProxy,
   public router: Router) { }
@@ -91,7 +92,12 @@ export class HomeComponent implements OnInit {
   }
 
   allCourses(type) {
-    this.router.navigate(['allcourses', type])
+    if (type) {
+      this.router.navigate(['allcourses', type]);
+    } else {
+      this.router.navigate(['allcourses', this.discoverBy]);
+    }
+    
   }
 
   responsiveSlider() {
