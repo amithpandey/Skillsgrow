@@ -13,8 +13,10 @@
                     <ul class="nav justify-content-end remove-the-font-weight">
                         <li class="nav-item reponsive-search">
                             <div class="input-group global-search">
-                                <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="model" placeholder="Search Course" [ngbTypeahead]="search"
-                                    [resultTemplate]="rt" [inputFormatter]="formatter" (keydown)="keyDownFunction($event, model._id)"
+                                <input id="typeahead-template" type="text" class="form-control" 
+                                [(ngModel)]="model" placeholder="Search Course" [ngbTypeahead]="search"
+                                    [resultTemplate]="rt" [inputFormatter]="formatter" 
+                                    (keydown)="keyDownFunction($event, model._id)"
                                 />
                                 <div class="input-group-append" (click)="alerting(model._id)">
                                     <span class="input-group-text" id="basic-addon2">
