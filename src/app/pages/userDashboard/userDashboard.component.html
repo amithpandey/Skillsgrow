@@ -1,0 +1,159 @@
+<app-navigation></app-navigation>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-10 offset-1">
+            <div class="row">
+                <div class="col-md-3 text-center" *ngFor="let x of progressObj">
+                    <circle-progress 
+                    [percent]="x.width" 
+                    [title]="(x.sampleTitle) ? x.sampleTitle : x.width" 
+                    [showSubtitle]="false" 
+                    [showUnits]="(x.sampleTitle) ? false : true"
+                    [radius]="80" 
+                    [outerStrokeWidth]="24" 
+                    [space]="-24" 
+                    [innerStrokeWidth]="24" 
+                    [outerStrokeColor]="x.color"
+                    [innerStrokeColor]="'#f1f1f1'" 
+                    [animation]="true" 
+                    [titleFontSize]="44" 
+                    [animationDuration]="300"></circle-progress>
+                    <!-- <div class="course-circle circle-one-color">04</div> -->
+                    <div>
+                        <b>{{x.title}}</b>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div *ngIf="activeCourses.length >= 1">
+                        <h2 class="default-margin-top">Active Courses</h2>
+                    </div>
+                    <div *ngIf="activeCourses.length == 0" class="text-center default-margin-top">
+                        <button routerLink="/allcourses/allCourses" class="btn view-all-courses">View All Courses <i class="fa fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="col-6" *ngFor="let course of activeCourses">
+                    <div class="row active-courses">
+                        <div class="col-5 courseimg">
+                            <img [src]="imagePath + course.imageSmall" alt="courseimg">
+                            <span>{{course.courseName}}</span>
+                        </div>
+                        <div class="col-7 progress-details">
+                            <div class="progress">
+                                <div class="progress-bar" [ngStyle]="{'background-color':'#F7941D', 'width' : course.courseProgress + '%'}">{{(course.courseProgress) ? course.courseProgress +'%' : ''}}</div>
+                            </div>
+                            <div class="row course-status">
+                                <div class="col-6 status-title">Current Topic: </div>
+                                <div class="col-6 status-title-description" title="{{course.currentTopic}}">{{course.currentTopic}}</div>
+                            </div>
+                            <div class="row course-status">
+                                <div class="col-6 status-title">Current Score: </div>
+                                <div class="col-6 status-title-description">{{course.currentScore}}</div>
+                            </div>
+                            <div class="text-center">
+                                <button (click)="continue(course._id)">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-12">
+                    <h2 class="default-margin-top">Recent Courses</h2>
+                </div>
+                <div class="col-3 text-center">
+                    <div class="recent-courses">
+                        <div class="courseimg">
+                            <img src="assets/image/popular-course.jpg" alt="courseimg">
+                            <span>Email writing</span>
+                        </div>
+                        <div class="score">91/100</div>
+                        <div>
+                            <button>Download Certificate</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 text-center">
+                    <div class="recent-courses">
+                        <div class="courseimg">
+                            <img src="assets/image/popular-course.jpg" alt="courseimg">
+                            <span>Email writing</span>
+                        </div>
+                        <div class="score">91/100</div>
+                        <div>
+                            <button>Download Certificate</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 text-center">
+                    <div class="recent-courses">
+                        <div class="courseimg">
+                            <img src="assets/image/popular-course.jpg" alt="courseimg">
+                            <span>Email writing</span>
+                        </div>
+                        <div class="score">91/100</div>
+                        <div>
+                            <button>Download Certificate</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 text-center">
+                    <div class="recent-courses">
+                        <div class="courseimg">
+                            <img src="assets/image/popular-course.jpg" alt="courseimg">
+                            <span>Email writing</span>
+                        </div>
+                        <div class="score">91/100</div>
+                        <div>
+                            <button>Download Certificate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-12">
+                    <h2 class="default-margin-top">Recommend Courses</h2>
+                </div>
+                <ng-container *ngFor="let x of categoryListData">
+                <ng-container *ngIf="x.status == 0">
+                    <div class="col-3" *ngFor="let y of x.course;let i = index">
+                        <div class="s-card">
+                            <div class="s-image">
+                                <img [src]="'https://placeimg.com/255/160/tech'" alt="img" />
+                            </div>
+                            <div class="s-content">
+                                <div class="s-title">
+                                    {{y.courseName}}
+                                </div>
+                                <div class="s-leftrightsection">
+                                    <span class="s-left">
+                                        <bar-rating [(rate)]="rate" [max]="5" [readOnly]="true"></bar-rating>
+                                    </span>
+                                    <span class="s-right">Free Course</span>
+                                </div>
+                                <div class="s-leftrightsection">
+                                    <span class="s-left">
+                                        <i class="fa fa-users"></i>
+                                    </span>
+                                    <span class="s-right">
+                                        <i class="fa fa-clock-o"></i> 19: 20</span>
+                                </div>
+                                <div class="s-button">
+                                    <span class="s-left">
+                                        <button (click)="viewDetailsCourse(y._id)" type="button" class="btn btn-sm">View Detail</button>
+                                    </span>
+                                    <span class="s-right">
+                                        <button (click)="enrollNowCourse()" type="button" class="btn btn-sm">Enroll</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                </ng-container>
+            </div> -->
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

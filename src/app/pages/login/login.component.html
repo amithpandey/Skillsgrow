@@ -1,0 +1,75 @@
+<app-navigation></app-navigation>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 offset-1">
+            <div class="row login-design" *ngIf="loginForm">
+                <div class="col-6 text-center login-content">
+                    <h3>ABOUT SKILLSGROW</h3>
+                    <p class="text-justify">
+                        skillsgrow.com is an online career skills development company that helps anyone develop their technical, 
+                        management, soft skills, marketing, finance,creative, and business skills to achieve their personal and 
+                        professional goals. 
+                        Choose from over 200 career skills enhancement online courses and internship programs. </p>
+                </div>
+                <div class="col-6 login-field">
+                    <div *ngIf="alertClass" class="alert alert-danger alert-dismissible">
+                        <strong>Error!</strong> {{message}}
+                        <div *ngIf="expired" class="default-margin-top">
+                            <button routerLink="/resendactivation" class="btn btn-success">Resend Activation link</button>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3>Welcome to Skillsgrow</h3>
+                    </div>
+                    <form autocomplete="off" #login="ngForm" (ngSubmit)="loginFieldsData(login)">
+                        <div class="form-group">
+                            <label>Email Id</label>
+                            <input type="text" class="form-control" name="emailId" [(ngModel)]="loginData.emailId" #emailId="ngModel" required>
+                            <div *ngIf="emailId.invalid && emailId.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" [(ngModel)]="loginData.password" #password="ngModel" required>
+                            <div *ngIf="password.invalid && password.touched" class="error-message">Field is required</div>
+                            <div class="text-center">
+                                <a (click)="forgotPassword()">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-info btn-block" [disabled]="login.invalid">Sign in</button>
+                            <span>New User? </span>
+                            <a routerLink="/register">click here </a>
+                            <span>to register</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row login-design" *ngIf="forgotPasswordForm">
+                <div class="col-6 text-center login-content">
+                    <h3>SKILLSGROW</h3>
+                    <p class="text-justify">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                        penatibus et magnis dis parturient montes</p>
+                </div>
+                <div class="col-6 login-field">
+                    <div *ngIf="forgotErrorMessage" class="alert alert-danger">
+                        <strong>Error!</strong> {{message}}
+                    </div>
+                    <div *ngIf="forgotSuccessMessage" class="alert alert-success">
+                        <strong>Success!</strong> {{message}}
+                    </div>
+                    <form class="forgot-password-form">
+                        <div class="form-group">
+                            <label>Enter Your Email Id to reset your password</label>
+                            <input type="text" class="form-control" name="resetpassword" placeholder="Enter your register Email Id" [(ngModel)]="forPassword">
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-info btn-block" (click)="resetPassword()">Reset Password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

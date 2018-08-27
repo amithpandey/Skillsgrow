@@ -1,0 +1,30 @@
+<app-navigation></app-navigation>
+<div class="container-fluid">
+    <div class="row course-learning-page">
+        <div class="col-10 offset-1">
+            <div class="row">
+                <div class="col-8">
+                    <h2>{{paramsData.subTopics}}</h2>
+                </div>
+                <div *ngIf="paramsData.testStatus == false && paramsData.questionsLength != 0" class="col-4 text-right">
+                    <button (click)="takeTest()" class="btn test-btn-top">TAKE TEST</button>
+                </div>
+            </div>
+            <p class="text-justify" [innerHTML]="paramsData.description"></p>
+            <div *ngIf="!paramsData.description" class="alert alert-info">
+                <strong>Info!</strong> No Learning material Found!!!!!!!!!!!
+            </div>
+            <!-- advertisement section -->
+            <!-- <div class="row">
+                <div class="col-6">
+                    <img src="assets/image/latest-course.jpg" alt="course" width="100%" height="300px">
+                </div>
+                <div class="col-6 advertisement-section">Advertisement section</div>
+            </div> -->
+            <div *ngIf="paramsData.testStatus == false && paramsData.questionsLength != 0" class="text-center">
+                <button (click)="takeTest()" class="btn test-btn-bottom">TAKE TEST</button>
+            </div>    
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

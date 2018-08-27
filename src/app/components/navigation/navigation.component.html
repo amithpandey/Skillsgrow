@@ -1,0 +1,83 @@
+<div class="container-fluid navigation-border-bottom">
+    <!-- [ngClass]="{'fixed-container': navBarFixed}" -->
+    <div class="row">
+        <div class="col-md-4 col-sm-12 image-container" style="cursor: pointer;">
+            <img style="outline: none" routerLink="/home" [src]="'assets/image/logo1.png'" />
+        </div>
+        <div class="col-md-8 col-sm-12 navigation-container">
+            <ng-template #rt let-r="result" let-t="term">
+                <div (click)="alerting(r._id)">{{r.courseName}}</div>
+            </ng-template>
+            <div class="row">
+                <div class="col top_nav">
+                    <ul class="nav justify-content-end remove-the-font-weight">
+                        <li class="nav-item reponsive-search">
+                            <div class="input-group global-search">
+                                <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="model" placeholder="Search Course" [ngbTypeahead]="search"
+                                    [resultTemplate]="rt" [inputFormatter]="formatter" (keydown)="keyDownFunction($event, model._id)"
+                                />
+                                <div class="input-group-append" (click)="alerting(model._id)">
+                                    <span class="input-group-text" id="basic-addon2">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- <pre>Model: {{ model | json }}</pre> -->
+                        </li>
+                        <li *ngIf="logoutNavigation" class="nav-item">
+                            <a class="nav-link" style="cursor: pointer;" (click)="userDashboardPath()">
+                                <i class="fa fa-home nav-icon-def-size"></i>
+                            </a>
+                        </li>
+                        <li *ngIf="logoutNavigation" class="nav-item">
+                            <a class="nav-link">
+                                <i class="fa fa-user nav-icon-def-size"></i>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                        <a class="nav-link"><i class="fa fa-bell nav-icon-def-size"></i></a>
+                    </li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <ul class="nav justify-content-end bottom-nav remove-the-font-weight">
+                        <li class="nav-item">
+                            <a class="nav-link dropbtn" (click)="showMegaMenu()">Courses
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a routerLink="/comingsoon" class="nav-link">Institute</a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a routerLink="/comingsoon" class="nav-link">Internship</a>
+                        </li>
+                        <li class="nav-item">
+                            <a *ngIf="!logoutNavigation" class="nav-link" routerLink="/login">Login</a>
+                            <a *ngIf="logoutNavigation" class="nav-link" (click)="logout()">Logout</a>
+                        </li>
+                        <li *ngIf="!logoutNavigation" class="nav-item">
+                            <a class="nav-link" routerLink="/register">register</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="megaMenu">
+        <div *ngIf="categoryListData.length >= 1" class="row mega-menu">
+            <div class="col-8 offset-2">
+                <div class="row">
+                    <ng-container *ngFor="let x of categoryListData">
+                        <div class="col-3" *ngIf="x.course.length >= 1">
+                            <div class="border-bottom-h3"><h3>{{x.categoryName}}</h3></div>
+                            <a *ngFor="let y of x.course" (click)="viewDetailsCourse(y._id)">{{y.courseName}}</a>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

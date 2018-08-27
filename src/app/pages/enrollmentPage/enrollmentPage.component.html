@@ -1,0 +1,38 @@
+<app-navigation></app-navigation>
+<div *ngIf="courseData" class="container-fluid">
+    <div class="row enrollment-page">
+        <div class="col-10 offset-1">
+            <h2>{{courseData.courseName}}</h2>
+            <div *ngIf="courseData.videoUrl">
+                <iframe width="100%" height="345" [src]="courseData.videoUrl" frameborder="0" allowfullscreen>
+                </iframe>
+            </div>
+            <div *ngIf="!courseData.videoUrl" class="large-image">
+                <img [src]="imagePath + courseData.courseImage" alt="courseimage">
+            </div>
+            <div class="row text-center timing-and-star">
+                <div class="col-3">
+                    <div class="border-enroll">
+                        <img src="assets/image/man-and-laptop.png" alt="iconimg">
+                        <span>{{courseData.courseChapter}} Chapter</span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="border-enroll">
+                        <img src="assets/image/alarm-clock1.png" alt="iconimg">
+                        <span>{{courseData.courseTiming}}</span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="enroll-star">
+                        <bar-rating [(rate)]="courseData.ratings" [max]="5" [readOnly]="true"></bar-rating>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <button (click)="enrollment()" class="btn btn-block">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

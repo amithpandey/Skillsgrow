@@ -1,0 +1,88 @@
+<app-navigation></app-navigation>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-10 offset-1">
+            <div class="enrollment-page">
+                <h2>{{courseListData.courseName}}</h2>
+                <div class="large-image">
+                    <img [src]="imagePath + courseListData.imageLarge" alt="courseimage">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 text-center" *ngFor="let x of progressObj">
+                        <circle-progress
+                        [percent]="x.width"
+                        [radius]="80"
+                        [outerStrokeWidth]="24"
+                        [space]="-24"
+                        [innerStrokeWidth]="24"
+                        [outerStrokeColor]="x.color"
+                        [innerStrokeColor]="'#f1f1f1'"
+                        [animation]="true"
+                        [titleFontSize]="44"
+                        [animationDuration]="300"
+                      ></circle-progress>
+                    <div>
+                        <b>{{x.title}}</b>
+                    </div>
+                </div>
+            </div>
+            <div class="row course-table">
+                <div class="col-12 table-responsive">
+                    <h2>Chapter Details</h2>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 55%">Chapter Name</th>
+                                <th>Learning</th>
+                                <th>Score</th>
+                                <th>Test</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let x of courseListData.timeline">
+                                <td (click)="accordin($event, x.order)">
+                                    <div>{{x.title}}
+                                        <span class="fa fa-chevron-down"></span>
+                                    </div>
+                                    <table *ngIf="selectedItem == x.order">
+                                        <tr *ngFor="let y of x.topics">
+                                            <td>{{y.subTopics}}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <div class="hidden">Chapter</div>
+                                    <table *ngIf="selectedItem == x.order">
+                                        <tr *ngFor="let y of x.topics">
+                                            <td><a style="cursor: pointer;" (click)="learningPageUrl(y, x.title, y.markScore)">Learn</a></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <div class="hidden">Chapter</div>
+                                    <table *ngIf="selectedItem == x.order">
+                                        <tr *ngFor="let y of x.topics">
+                                            <td>{{(y.markScore) ? y.markScore : 00}}/{{(y.questions) ? y.questions.length-1 : '0'}}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <div class="hidden">Chapter</div>
+                                    <table *ngIf="selectedItem == x.order">
+                                        <tr *ngFor="let y of x.topics">
+                                            <td>
+                                                <button class="btn" [ngClass]="(y.markScore || y.markScore == 0) ? 'btn-success' : 'btn-default'">{{(y.markScore || y.markScore == 0) ? 'Completed' : 'Not Completed'}}</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

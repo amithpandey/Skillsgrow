@@ -1,0 +1,29 @@
+<app-navigation></app-navigation>
+<div class="container">
+    <div class="row default-margin-top">
+        <div class="col-md-6 offset-3">
+            <h2>Resend Form Activation</h2>
+            <div *ngIf="successMessage" class="alert alert-success alert-dismissible">
+                    <strong>Success!</strong> {{message}}
+                </div>
+                <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible">
+                    <strong>Error!</strong> {{message}}
+                </div>
+            <form autocomplete="off" #resendForm="ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label>Email ID</label>
+                    <input type="text" class="form-control" name="email" [(ngModel)]="resendFormObj.email" #email="ngModel" required>
+                    <div class="error-message" *ngIf="email.invalid && email.touched">Email is invalid</div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]="resendFormObj.password" #password="ngModel" required>
+                    <div class="error-message" *ngIf="password.invalid && password.touched">password is invalid</div>
+                </div>
+                <div class="form-group text-right">
+                    <button class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

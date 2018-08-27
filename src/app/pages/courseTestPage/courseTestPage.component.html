@@ -1,0 +1,96 @@
+<app-navigation></app-navigation>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="row test-details">
+                <div class="col-md-8">
+                    <b>Subject : </b>{{testData.subTopics}}
+                </div>
+                <div class="col-md-4 text-right">
+                    <b>Time : </b>30mins
+                </div>
+                <div class="col-md-12">
+                    <b>Total Questions : </b>{{findQuestionNo.length}}
+                </div>
+                <div class="col-md-12">
+                    <b>Note : </b>Once the test is started, then you can not close the browser. This Produce Fail cetificates
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-6 offset-3">
+                    <div *ngIf="successMessage" class="alert alert-success">
+                        <strong>Success!</strong> {{message}}
+                    </div>
+                    <div *ngIf="infoMessage" class="alert alert-info">
+                        <strong>Info!</strong> {{message}}
+                    </div>
+                </div>
+            </div>
+            <div class="row total-questions">
+                <ul *ngIf="questionobj.length > 0">
+                    <ng-container *ngFor="let x of findQuestionNo; let i = index">
+                        <li [ngClass]="{
+                                'test-blue':allQuestion[x][7] == 'false',
+                                'test-active':selectedItem == x,
+                                'test-normal':selectedItem != x,
+                                'test-green':allQuestion[x][7] == 'true'
+                              }" (click)="numberOfQuestions(x, $event, i+1)">{{i+1}}</li>
+                    </ng-container>
+                </ul>
+            </div>
+            <div class="row question" *ngFor="let x of questionobj">
+                <div *ngIf="!x.passage" class="col-12">
+                    <!-- <div>{{x.t}}</div>
+                    <div>Time Elapsed : {{timeElapsed()}}</div> -->
+                    <span>{{questionNumber}}. </span>
+                    <span>{{x.question}}</span>
+                    <div class="col-12 align-to-left" *ngFor="let y of x.options;let i = index">
+                        <span *ngIf="i == 0">A.</span>
+                        <span *ngIf="i == 1">B.</span>
+                        <span *ngIf="i == 2">C.</span>
+                        <span *ngIf="i == 3">D.</span>
+                        <label class="container-radio">
+                            <span style="position: relative;top: 5px;">{{y}}</span>
+                            <input type="radio" [(ngModel)]="questionAnswer" [value]="y" name="radio" (change)="answer($event, questionAnswer)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div *ngIf="x.passage" class="col-12">
+                    <span>{{questionNumber}}. </span>
+                    <span>{{x.passage}}</span>
+                    <div class="default-margin-top" *ngFor="let y of x.question; let q = index"><b><span>{{q+1}}.</span> {{y.question}}</b>
+                        <form class="col-12 align-to-left" *ngFor="let z of y.options;let ind = index">
+                            <span *ngIf="ind == 0">A.</span>
+                            <span *ngIf="ind == 1">B.</span>
+                            <span *ngIf="ind == 2">C.</span>
+                            <span *ngIf="ind == 3">D.</span>
+                            <label class="container-radio">
+                                <span style="position: relative;top: 5px;">{{z}}</span>
+                                <input type="radio" [(ngModel)]="y.userAnswer" [value]="z" name="radio" (change)="answer($event,z)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="questionobj.length > 0" class="row review-and-save-btn">
+                <div class="col-12 text-right">
+                    <button class="btn review-btn" (click)="saveAndContinue('btnClick')">Review Later</button>
+                    <button class="btn save-btn" (click)="saveAndContinue('btnClick')">Save & Continue</button>
+                </div>
+            </div>
+            <div *ngIf="showMark" class="col-6 offset-3 text-center score-card">
+                <h1>Score Card</h1>
+                <div class="form-group">
+                    <i class="fa fa-trophy fa-4x"></i>{{userScore}}/{{findQuestionNo.length}}</div>
+                <div>
+                    <button (click)="goToDashboardPage()" class="btn btn-success">Go TO Dashboard Page
+                        <i class="fa fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

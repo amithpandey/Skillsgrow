@@ -1,0 +1,168 @@
+<app-navigation></app-navigation>
+<div class="container-fluid">
+    <div class="row course-details-page" *ngFor="let x of courseDetails;let ind = index">
+        <div class="col-10 offset-1">
+            <h2>{{ x.courseName }}</h2>
+            <div *ngIf="x.video">
+                <iframe width="100%" height="345" [src]="x.video" frameborder="0" allowfullscreen>
+                </iframe>
+            </div>
+            <div *ngIf="!x.video" class="course-large-img">
+                <img [src]="imagePath + x.imageLarge" alt="courseImg">
+            </div>
+            <div class="enroll-now">
+                <ul>
+                    <li>
+                        <img src="assets/image/man-and-laptop1.png" alt="icon">
+                        <span>{{(x.enrolledUser.length != 0) ? x.enrolledUser.length : '0'}} Enrolled</span>
+                    </li>
+                    <li>
+                        <img src="assets/image/circular-alarm-clock-tool.png" alt="icon">
+                        <span>{{courseTiming}}</span>
+                    </li>
+                    <li>
+                        <ng-template #t let-fill="fill">
+                            <span class="star" [class.full]="fill === 100">
+                                <span class="half" [style.width.%]="fill">
+                                    <i class="fa fa-star"></i>
+                                </span>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </ng-template>
+
+                        <ngb-rating [max]="5" [(rate)]="averageRate" [starTemplate]="t" [readonly]="true"></ngb-rating>
+                    </li>
+                    <li>
+                        <span>{{(x.authorDetails[ind].coursePrice == 'Free') ? 'FREE COURSE' : 'x.authorDetails[ind].coursePrice'}}
+                        </span>
+                        <span *ngIf="x.authorDetails[ind].coursePrice != 'Free'">
+                            <i style="position: relative;top: 2px;" class="fa fa-inr"></i>
+                        </span>
+                    </li>
+                    <li *ngIf="x.enrollBtn != false">
+                        <button (click)="enrollNowCourse()">Enroll Now</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-4 course-details">
+                    <ul>
+                        <li id="defaultOpen" class="tablinks " (click)="aboutCourse($event, 'about')">ABOUT COURSE</li>
+                        <li class="tablinks " (click)="aboutCourse($event, 'description')">COURSE DESCRIPTION
+                        </li>
+                        <li class="tablinks " (click)="aboutCourse($event, 'curriculum')">
+                            COURSE CURRICULUM
+                        </li>
+                        <li class="tablinks " (click)="aboutCourse($event, 'review')">
+                            STUDENT REVIEW
+                        </li>
+                        <li class="tablinks " (click)="aboutCourse($event, 'biography')">
+                            AUTHOR'S BIOGRAPHY
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-8">
+                    <div id="about" class="tabcontent">
+                        <h4>About Course</h4>
+                        <p [innerHTML]="x.description"></p>
+                    </div>
+                    <div id="description" class="tabcontent" class="tabcontent">
+                        <h4>Course description</h4>
+                        <div class="tabel-responsive" *ngFor="let x of topicList">
+                            <h4>{{x.title}}</h4>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <th>S.no</th>
+                                    <th>Topics</th>
+                                    <th>Timing</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let y of x.topics;let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{y.subTopics}}</td>
+                                        <td>{{y.timing}} min</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="curriculum" class="tabcontent">
+                        <div class="row course-curriculum">
+                            <div class="col-md-6">
+                                <h4>{{ x.courseName }}</h4>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <span>{{(x.authorDetails[ind].coursePrice == 'Free') ? 'INR FREE/-' : 'x.authorDetails[ind].coursePrice'}}
+                                </span>
+                                <span *ngIf="x.authorDetails[ind].coursePrice != 'Free'">
+                                    <i style="position: relative;top: 2px;" class="fa fa-inr"></i>
+                                </span>
+                                <button *ngIf="x.enrollBtn != false" (click)="enrollNowCourse()">ENROLL</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="review" class="tabcontent">
+                        <div *ngIf="infoMessage" class="alert alert-info">
+                            <strong>Info!</strong> Only Enrolled User Can Review the Course.
+                        </div>
+                        <div *ngIf="errorMessage" class="alert alert-danger">
+                            <strong>Error!</strong> {{message}}
+                        </div>
+                        <div *ngIf="successMessage" class="alert alert-success">
+                            <strong>Success!</strong> {{message}}
+                        </div>
+                        <div>
+                            <ngb-rating [max]="5" [(rate)]="currentRate"></ngb-rating>
+                            <hr>
+                            <pre>Rate: <b>{{currentRate}}</b></pre>
+                        </div>
+                        <form autocomplete="off" #reviewForm="ngForm" (ngSubmit)="onSubmit(reviewForm)">
+                            <div class="form-group">
+                                <label>Name
+                                    <span class="asterisk">*</span>
+                                </label>
+                                <input type="text" class="form-control" name="name" [(ngModel)]="reviewFormObj.name" #name="ngModel" required>
+                                <div class="error-message" *ngIf="name.invalid && name.touched">Invalid name</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Comment
+                                    <span class="asterisk">*</span>
+                                </label>
+                                <textarea class="form-control" name="comment" [(ngModel)]="reviewFormObj.comment" #comment="ngModel" required></textarea>
+                                <div class="error-message" *ngIf="comment.invalid && comment.touched">Invalid Comment</div>
+                            </div>
+                            <div class="form-group text-right">
+                                <button class="btn btn-success">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="biography" class="tabcontent">
+                        <div class="tabel-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>Author Name</th>
+                                        <td>{{x.authorDetails[ind].authorName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone</th>
+                                        <td>{{x.authorDetails[ind].authorPhone}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email ID</th>
+                                        <td>{{x.authorDetails[ind].authorEmail}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Author Biography</th>
+                                        <td>{{x.authorDetails[ind].authorBiography}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

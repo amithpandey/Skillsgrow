@@ -1,0 +1,31 @@
+app-login-navigation {
+    .container-fluid {
+        padding: 15px;
+        background-color: @brand-green;
+        color: @white;
+
+        .form-group {
+            padding: 0px 15px;
+
+            .form-control {
+                border: none;
+                border-radius: 0px;
+            }
+
+            input[type=button] {
+                background-color: @white;
+                color: @brand-green;
+                border-radius: 25px !important;
+                width: 50%;
+                padding: 6px;
+                font-weight: bold;
+
+                &:hover, &:focus {
+                    border: none;
+                    outline: none;
+                    box-shadow: none;
+                }
+            }
+        }
+    } 
+}

@@ -1,0 +1,86 @@
+<app-navigation></app-navigation>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-10 offset-1 search-filter">
+            <ul>
+                <!-- <li>
+                    <label>Search Author</label>
+                    <input type="text" class="form-control">
+                </li> -->
+                <li>
+                    <label>Search Courses</label>
+                    <input type="text" class="form-control">
+                </li>
+                <li>
+                    <label>Ratings</label>
+                    <select class="form-control">
+                        <option>Low to High</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </li>
+                <li>
+                    <label>Pricing</label>
+                    <select class="form-control">
+                        <option>Low to High</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </li>
+                <li>
+                    <button class="btn">RESET</button>
+                </li>
+                <li>
+                    <button class="btn apply-btn">APPLY</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row default-margin-top" style="margin-bottom: 15px;">
+        <div class="col-md-10 offset-1">
+            <div class="row">
+                <ng-container *ngFor="let x of course;let i = index">
+                    <div class="col-3">
+                        <div class="s-card">
+                            <!-- <div class="s-image">
+                                    <img [src]="'https://placeimg.com/255/160/tech'" alt="img" />
+                                </div> -->
+                            <div class="s-image">
+                                <img [src]="imagePath + x.imageSmall" alt="img" />
+                            </div>
+                            <div class="s-content">
+                                <div class="s-title">
+                                    {{x.courseName}}
+                                </div>
+                                <div class="s-leftrightsection">
+                                    <span style="position: relative; bottom: 10px;" class="s-left">
+                                        <bar-rating [(rate)]="rate" [max]="5" [readOnly]="true"></bar-rating>
+                                    </span>
+                                    <span style="margin-top: 13px;" class="s-right">{{(x.authorDetails[0].coursePrice == 'Free') ? 'Free Course' : x.authorDetails[0].coursePrice}}</span>
+                                </div>
+                                <div class="s-leftrightsection">
+                                    <span class="s-left">
+                                        <i class="fa fa-clock-o"></i> {{x.timing}}</span>
+                                    <span *ngIf="x.enrolledUser > 50" class="s-left">
+                                        <i class="fa fa-users"></i>{{x.enrolledUser}}</span>
+                                </div>
+                                <div class="s-button">
+                                    <span class="s-left">
+                                        <button (click)="viewDetailsCourse(x.categoryId)" type="button" class="btn btn-sm">View Detail</button>
+                                    </span>
+                                    <span class="s-right">
+                                        <button type="button" class="btn btn-sm" (click)="enrollNowCourse(x.categoryId, x.timeline.length, x.timing, i)">Enroll</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

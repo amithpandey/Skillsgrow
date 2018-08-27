@@ -1,0 +1,145 @@
+<app-navigation></app-navigation>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 offset-1">
+            <div class="row login-design">
+                <div class="col-6 text-center login-content">
+                    <h3>ABOUT SKILLSGROW</h3>
+                    <p class="text-justify">
+                        skillsgrow.com is an online career skills development company that helps anyone develop their technical, 
+                        management, soft skills, marketing, finance,creative, and business skills to achieve their personal and 
+                        professional goals. 
+                        Choose from over 200 career skills enhancement online courses and internship programs.
+                    </p>
+                </div>
+                <div class="col-6 login-field">
+                    <div class="text-center register-tabs">
+                        <ul>
+                            <li id="defaultOpen" class="tablinks " (click)="tabFunction($event, 'Learner')">Learner</li>
+                            <li class="tablinks " (click)="tabFunction($event, 'Institute')">Institute</li>
+                            <li class="tablinks " (click)="tabFunction($event, 'Author')">Author</li>
+                        </ul>
+                    </div>
+                    <form id="Learner" class="tabcontent" #learnerForm="ngForm" (ngSubmit)="learnerFieldData(learnerForm)">
+                        <div *ngIf="successMessage" class="alert alert-success alert-dismissible">
+                            <strong>Success!</strong> {{message}}
+                        </div>
+                        <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible">
+                            <strong>Error!</strong> {{message}}
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="userName" [(ngModel)]="learnerData.userName" #userName="ngModel" required>
+                            <div *ngIf="userName.invalid && userName.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Id</label>
+                            <input type="text" class="form-control" name="emailId" [(ngModel)]="learnerData.emailId" #emailId="ngModel" required>
+                            <div *ngIf="emailId.invalid && emailId.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <input type="text" class="form-control" name="number" [(ngModel)]="learnerData.number" #number="ngModel" required>
+                            <div *ngIf="number.invalid && number.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" [(ngModel)]="learnerData.password" #password="ngModel" required>
+                            <div *ngIf="password.invalid && password.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" class="form-control" name="cpassword" [(ngModel)]="learnerData.cpassword" #cpassword="ngModel" required>
+                            <div *ngIf="cpassword.invalid && cpassword.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-info btn-block" [disabled]="learnerForm.invalid">Sign in</button>
+                            <span>Existing User? </span>
+                            <a routerLink="/login">click here </a>
+                            <span>to login</span>
+                        </div>
+                    </form>
+                    <form id="Institute" class="tabcontent" #learnerForm="ngForm" (ngSubmit)="learnerFieldData(learnerForm)">
+                        <h4>Coming Soon</h4>
+                        <!-- <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="userName" [(ngModel)]="learnerData.userName" #userName="ngModel" required>
+                            <div *ngIf="userName.invalid && userName.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Institute Name</label>
+                            <input type="text" class="form-control" name="userName" [(ngModel)]="learnerData.userName" #userName="ngModel" required>
+                            <div *ngIf="userName.invalid && userName.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Id</label>
+                            <input type="text" class="form-control" name="emailId" [(ngModel)]="learnerData.emailId" #emailId="ngModel" required>
+                            <div *ngIf="emailId.invalid && emailId.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <input type="text" class="form-control" name="number" [(ngModel)]="learnerData.number" #number="ngModel" required>
+                            <div *ngIf="number.invalid && number.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" [(ngModel)]="learnerData.password" #password="ngModel" required>
+                            <div *ngIf="password.invalid && password.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" class="form-control" name="cpassword" [(ngModel)]="learnerData.cpassword" #cpassword="ngModel" required>
+                            <div *ngIf="cpassword.invalid && cpassword.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-info btn-block" [disabled]="learnerForm.invalid">Sign in</button>
+                            <span>Existing User? </span>
+                            <a routerLink="/login">click here </a>
+                            <span>to login</span>
+                        </div> -->
+                    </form>
+                    <form id="Author" class="tabcontent" #learnerForm="ngForm" (ngSubmit)="learnerFieldData(learnerForm)">
+                        <h4>Coming Soon</h4>
+                        <!-- <div class="form-group">
+                            <label>Author Name</label>
+                            <input type="text" class="form-control" name="userName" [(ngModel)]="learnerData.userName" #userName="ngModel" required>
+                            <div *ngIf="userName.invalid && userName.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Institute Name</label>
+                            <input type="text" class="form-control" name="userName" [(ngModel)]="learnerData.userName" #userName="ngModel" required>
+                            <div *ngIf="userName.invalid && userName.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Id</label>
+                            <input type="text" class="form-control" name="emailId" [(ngModel)]="learnerData.emailId" #emailId="ngModel" required>
+                            <div *ngIf="emailId.invalid && emailId.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                            <input type="text" class="form-control" name="number" [(ngModel)]="learnerData.number" #number="ngModel" required>
+                            <div *ngIf="number.invalid && number.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" [(ngModel)]="learnerData.password" #password="ngModel" required>
+                            <div *ngIf="password.invalid && password.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" class="form-control" name="cpassword" [(ngModel)]="learnerData.cpassword" #cpassword="ngModel" required>
+                            <div *ngIf="cpassword.invalid && cpassword.touched" class="error-message">Field is required</div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-info btn-block" [disabled]="learnerForm.invalid">Sign in</button>
+                            <span>Existing User? </span>
+                            <a routerLink="/login">click here </a>
+                            <span>to login</span>
+                        </div> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

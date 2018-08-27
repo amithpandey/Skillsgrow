@@ -1,0 +1,131 @@
+<div class="container" style="margin-bottom: 15px;">
+  <div *ngIf="popularTitle" class="row default-margin-top">
+    <div class="col-12 text-left">
+      <h2>Popular Courses
+        <!-- <button class="btn btn-sg pull-right">View More</button> -->
+      </h2>
+    </div>
+  </div>
+  <div class="row default-margin-top">
+    <ng-container *ngFor="let x of categoryListData; let ind = index">
+      <ng-container *ngIf="x.status == 0">
+        <div class="col-lg-3 col-md-6 col-sm-10 offset-sm-1 offset-md-0 offset-lg-0" *ngFor="let y of x.course;let i = index">
+          <div class="s-card">
+              <!-- <div class="s-image">
+                  <img [src]="'https://placeimg.com/255/160/tech'" alt="img" />
+              </div> -->
+            <div class="s-image">
+              <img [src]="imagePath + y.imageSmall" alt="img" />
+            </div>
+            <div class="s-content">
+              <div class="s-title">
+                {{y.courseName}}
+              </div>
+              <div class="s-leftrightsection">
+                <span style="position: relative; bottom: 10px;" class="s-left"><bar-rating [(rate)]="y.ratings" [max]="5" [readOnly]="true"></bar-rating></span>
+                <span style="margin-top: 13px;" class="s-right">{{(y.authorDetails[0].coursePrice == 'Free') ? 'Free Course' : x.authorDetails[0].coursePrice}}</span>
+              </div>
+              <div class="s-leftrightsection">
+                <span class="s-left"><i class="fa fa-clock-o"></i> {{y.timing}}</span>
+                <span *ngIf="y.enrolledUser > 50" class="s-left"><i class="fa fa-users"></i>{{y.enrolledUser}}</span> 
+              </div>
+              <div class="s-button">
+                <span class="s-left">
+                  <button (click)="viewDetailsCourse(y._id)" type="button" class="btn btn-sm">View Detail</button>
+                </span>
+                <span class="s-right">
+                  <button type="button" class="btn btn-sm" 
+                  (click)="enrollNowCourse(y._id, y.timeline.length, y.timing, y.ratings, y.courseName, y.imageLarge, y.enrollBtn, y.video)">{{(y.enrollBtn != false) ? 'Enroll' : 'Enrolled'}}</button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+   <!--  <div class="col-3"> 
+      <div class="s-card">
+        <div class="s-image">
+          <img [src]="'https://placeimg.com/255/160/tech'" alt="img" />
+        </div>
+        <div class="s-content">
+          <div class="s-title">
+            Business development
+          </div>
+          <div class="s-leftrightsection">
+            <span class="s-left"><bar-rating [(rate)]="rate" [max]="5" [readOnly]="true"></bar-rating></span>
+            <span class="s-right">Free Course</span>
+          </div>
+          <div class="s-leftrightsection">
+            <span class="s-left"><i class="fa fa-users"></i> 23 Enrolled</span>
+            <span class="s-right"><i class="fa fa-clock-o"></i> 19: 20</span> 
+          </div>
+          <div class="s-button">
+            <span class="s-left">
+              <button type="button" class="btn btn-sm">View Detail</button>
+            </span>
+            <span class="s-right">
+              <button type="button" class="btn btn-sm">Enroll</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3"> 
+      <div class="s-card">
+        <div class="s-image">
+          <img [src]="'https://placeimg.com/255/160/tech'" alt="img" />
+        </div>
+        <div class="s-content">
+          <div class="s-title">
+            Business development
+          </div>
+          <div class="s-leftrightsection">
+            <span class="s-left"><bar-rating [(rate)]="rate" [max]="5" [readOnly]="true"></bar-rating></span>
+            <span class="s-right">Free Course</span>
+          </div>
+          <div class="s-leftrightsection">
+            <span class="s-left"><i class="fa fa-users"></i> 23 Enrolled</span>
+            <span class="s-right"><i class="fa fa-clock-o"></i> 19: 20</span> 
+          </div>
+          <div class="s-button">
+            <span class="s-left">
+              <button type="button" class="btn btn-sm">View Detail</button>
+            </span>
+            <span class="s-right">
+              <button type="button" class="btn btn-sm">Enroll</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3"> 
+      <div class="s-card">
+        <div class="s-image">
+          <img [src]="'https://placeimg.com/255/160/tech'" alt="img" />
+        </div>
+        <div class="s-content">
+          <div class="s-title">
+            Business development
+          </div>
+          <div class="s-leftrightsection">
+            <span class="s-left"><bar-rating [(rate)]="rate" [max]="5" [readOnly]="true"></bar-rating></span>
+            <span class="s-right">Free Course</span>
+          </div>
+          <div class="s-leftrightsection">
+            <span class="s-left"><i class="fa fa-users"></i> 23 Enrolled</span>
+            <span class="s-right"><i class="fa fa-clock-o"></i> 19: 20</span> 
+          </div>
+          <div class="s-button">
+            <span class="s-left">
+              <button type="button" class="btn btn-sm">View Detail</button>
+            </span>
+            <span class="s-right">
+              <button type="button" class="btn btn-sm">Enroll</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>  --> 
+  </div>
+</div>

@@ -1,0 +1,165 @@
+<app-info-bar *ngIf="false"></app-info-bar>
+<app-navigation></app-navigation>
+<app-login-navigation *ngIf="false"></app-login-navigation>
+
+<!-- banner section -->
+<ngb-carousel>
+  <ng-container *ngFor="let img of listBannerImagesData">
+    <ng-container *ngIf="img.status != 1">
+      <ng-template ngbSlide>
+        <img [src]="imagePath + img.image" alt="Random first slide">
+        <div class="banner-images-description">
+          <h4 *ngIf="img.imageTitle">{{img.imageTitle}}</h4>
+          <p *ngIf="img.description">{{img.description}}</p>
+          <div *ngIf="img.link" class="image-link">
+            <button>
+              <a target="_blank" [href]="img.link">Click</a>
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </ng-container>
+</ngb-carousel>
+
+
+<app-course-listing></app-course-listing>
+
+
+<!-- discover section -->
+
+<div class="container">
+  <div class="row default-margin-top">
+    <div class="col">
+      <h2>Discover by</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div (click)="allCourses('allCourses')" class="col-md-4 col-sm-12 all-course">
+      <span>All Courses</span>
+    </div>
+    <div class="col-md-8 col-sm-12">
+      <div class="row">
+        <div (click)="allCourses('popularCourses')" class="col popular-course">
+          <span>Popular Courses</span>
+        </div>
+        <div (click)="allCourses('freeCourses')" class="col free-course">
+          <span>Free Courses</span>
+        </div>
+      </div>
+      <div class="row">
+        <div (click)="allCourses('latestCourses')" class="col latest-course">
+          <span>Latest Courses</span>
+        </div>
+        <div (click)="allCourses('ratingCourses')" class="col rating-course">
+          <span>Rating Courses</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Review Section -->
+<div>
+    <div class="default-margin-top">
+        <div class="col-12 text-center">
+          <h2>What Others talk about us</h2>
+        </div>
+      </div>
+    <div
+    ng2-carouselamos
+    [width]="mainWidth"
+    [items]="whatOthersTalkSection"
+    [$item]="item"
+    [$prev]="prevTemplate"
+    [$next]="nextTemplate"
+  ></div>
+
+  <ng-template #prevTemplate>
+      <span *ngIf="!smallDevice"><i style="position: relative; left: 61px;" class="fa fa-chevron-left arrow-left-right"></i></span>
+      <span *ngIf="smallDevice"><i class="fa fa-chevron-left"></i></span>
+    </ng-template>
+     
+    <ng-template #nextTemplate>
+        <span *ngIf="!smallDevice"><i class="fa fa-chevron-right arrow-left-right"></i></span>
+        <span *ngIf="smallDevice"><i class="fa fa-chevron-right"></i></span>
+    </ng-template>
+
+    <ng-template let-item let-i="index" #item>
+        <div [ngStyle]="{'min-width': mediaWidth +'px'}">
+            <div class="row default-margin-top" style="margin-left: 10px;">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col">
+                      <div class="message-content text-justify">{{item.comment}}</div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col default-margin-top">
+                      <div class="image-container-review">
+                        <img [src]="'assets/image/dummyuser.png'" />
+                        <div class="title">
+                          <span class="name">{{item.name}}</span>
+                          <span class="course">{{item.occupation}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </ng-template>
+
+</div>
+<!-- <div class="container">
+  <div class="row default-margin-top">
+    <div class="col">
+      <h2>What Others talk about us</h2>
+    </div>
+  </div>
+  <div class="row default-margin-top">
+    <div class="col-1 text-center">
+      <span class="toggle-round-menu">
+        <i class="fa fa-angle-left"></i>
+      </span>
+    </div>
+    <div class="col-10">
+      <div class="row">
+        <div class="col">
+          <div class="message-content text-justify">{{whatOthersTalkSection[0].comment}}</div>
+        </div>
+        <div class="col">
+          <div class="message-content text-justify">{{whatOthersTalkSection[1].comment}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col default-margin-top">
+          <div class="image-container-review">
+            <img [src]="'assets/image/dummyuser.png'"/>
+            <div class="title">
+              <span class="name">{{whatOthersTalkSection[0].name}}</span>
+              <span class="course">{{whatOthersTalkSection[0].occupation}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col default-margin-top">
+          <div class="image-container-review">
+            <img [src]="'assets/image/dummyuser.png'" />
+            <div class="title">
+              <span class="name">{{whatOthersTalkSection[1].name}}</span>
+              <span class="course">{{whatOthersTalkSection[1].occupation}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-1 text-center">
+      <span class="toggle-round-menu">
+        <i class="fa fa-angle-right"></i>
+      </span>
+    </div>
+  </div>
+</div> -->
+
+<app-footer></app-footer>
