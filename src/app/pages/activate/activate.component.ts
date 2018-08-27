@@ -11,7 +11,7 @@ import { ActivateProxy } from './activate.proxy';
 
 export class AccountActivationComponent implements OnInit {
     public token: any;
-    public successMessage: boolean = false;;
+    public successMessage: boolean = false;
     public errorMessage: boolean = false;
 
     constructor(public global: Global,
@@ -21,7 +21,7 @@ export class AccountActivationComponent implements OnInit {
 
     ngOnInit() {
         this.activateRoute.params.forEach(params => {
-            this.token = params["token"];
+            this.token = params['token'];
         });
         this.activateproxy.activateAccount(this.token)
         .subscribe((success) => {

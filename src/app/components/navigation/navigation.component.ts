@@ -91,12 +91,12 @@ export class NavigationComponent implements OnInit {
       debounceTime(200),
       map(term => term === '' ? []
         : this.course.filter(v => v.courseName.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-    );
+    )
 
   formatter = (x: {courseName: string}) => x.courseName;
 
   keyDownFunction(event, id) {
-    if(event.keyCode === 13) {
+    if (event.keyCode === 13) {
       this.router.navigate(['/coursedetailspage', id]);
     }
   }

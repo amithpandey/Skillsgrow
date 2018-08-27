@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AllCoursesProxy } from './allCourses.proxy';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Global } from '../../common/global';
-import { Constants } from '../../common/constants'
+import { Constants } from '../../common/constants';
 
 @Component({
     selector: 'app-all-courses',
@@ -22,7 +22,7 @@ export class AllCoursesComponent implements OnInit {
 
     ngOnInit() {
         this.activateRoute.params.forEach(params => {
-            this.courseType = params["type"];
+            this.courseType = params['type'];
         });
         this.categoryListingCourse();
     }
@@ -47,8 +47,8 @@ export class AllCoursesComponent implements OnInit {
                                     course.timing = course.timing + time.timing;
                                 }
                             });
-                        })
-                    })
+                        });
+                    });
                 });
                 this.convertMinuteInTime(this.courseListData);
                 console.log(this.course);
@@ -63,18 +63,16 @@ export class AllCoursesComponent implements OnInit {
             course.filter((data) => {
                 if (data.authorDetails.coursePrice === 'Free') {
                     course.push(data);
-                };
+                }
             });
         } else if (this.courseType === 'latestCourse') {
             course.sort(this.dateWiseSorting);
-        } else if (this.courseType === 'ratingCourses') {
-            
-        }
+        } else if (this.courseType === 'ratingCourses') {}
     }
 
     dateWiseSorting(a, b) {
-        let dateA: any = new Date(a.createdOn);
-        let dateB: any = new Date(b.createdOn);
+        const dateA: any = new Date(a.createdOn);
+        const dateB: any = new Date(b.createdOn);
         return dateB - dateA;
     }
 
@@ -94,14 +92,14 @@ export class AllCoursesComponent implements OnInit {
 
 
     convertMinuteInTime(data) {
-        data.filter((data) => {
-            data.course.filter((timing) => {
-                let h = Math.floor(timing.timing / 60);
-                let m = timing.timing % 60;
-                let hr = h < 10 ? '0' + h : h;
-                let min = m < 10 ? '0' + m : m;
+        data.filter((courseListData) => {
+            courseListData.course.filter((timing) => {
+                const h = Math.floor(timing.timing / 60);
+                const m = timing.timing % 60;
+                const hr = h < 10 ? '0' + h : h;
+                const min = m < 10 ? '0' + m : m;
                 timing.timing = hr + ':' + min;
-            })
+            });
         });
     }
 
@@ -113,7 +111,7 @@ export class AllCoursesComponent implements OnInit {
         if (!this.global.getStorageDetail('user')) {
             this.global.navigateToNewPage('/login');
         } else {
-            let courseObj = {
+            const courseObj = {
                 courseId: id,
                 courseTiming: timing,
                 courseRating: '',

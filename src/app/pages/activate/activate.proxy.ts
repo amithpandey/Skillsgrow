@@ -14,7 +14,7 @@ export class ActivateProxy {
     constructor(public http: HttpUtil, public mannualHttp: HttpClient) {}
 
     activateAccount(token) {
-        return this.http.doPut(Constants.APIPATH + 'admin/activate/'+token, false);
+        return this.http.doPut(Constants.APIPATH + 'admin/activate/' + token, false);
     }
 
 }

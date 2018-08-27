@@ -10,7 +10,7 @@ import { Global } from '../../common/global';
 
 export class RegisterComponent implements OnInit {
     @ViewChild('defaultOpen') div: ElementRef;
-    public set:  any;
+    public set: any;
     public learnerData = {
         userName: '',
         emailId: '',
@@ -52,22 +52,22 @@ export class RegisterComponent implements OnInit {
             delete this.learnerData.cpassword;
             console.log(this.learnerData);
             this.registerProxy.registerDataService(this.learnerData)
-            .subscribe((success) => {
-                console.log(success);
-                if (success.result) {
-                    this.successMessage = true;
-                    this.errorMessage = false;
-                    this.message = 'Please check your email for account activation !!!'
-                    form.reset();
-                    /* setTimeout(() => {
-                        this.global.navigateToNewPage('/login');
-                    }, 5000); */
-                }
-            });
-        } else{
+                .subscribe((success) => {
+                    console.log(success);
+                    if (success.result) {
+                        this.successMessage = true;
+                        this.errorMessage = false;
+                        this.message = 'Please check your email for account activation !!!';
+                        form.reset();
+                        /* setTimeout(() => {
+                            this.global.navigateToNewPage('/login');
+                        }, 5000); */
+                    }
+                });
+        } else {
             this.errorMessage = true;
             this.successMessage = false;
-            this.message = 'password does not matched'
+            this.message = 'password does not matched';
         }
     }
 

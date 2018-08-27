@@ -28,7 +28,7 @@ app-navigation {
                 color: black;
                 transition: 0.1s;
                 cursor: pointer;
-                font-weight: bold;
+                font-weight: 600 !important;
                  
                 i {
                     font-weight: bold;
@@ -42,20 +42,18 @@ app-navigation {
     }
 }
 
+.reponsive-search {
 
-@media only screen and (max-width: 780px) {
-    .reponsive-search {
+    @media only screen and (max-width: 780px) {
         width: 100%;
-        .input-group {
-            flex-wrap: inherit;
-        }
     }
 }
 
 .mega-menu{
     position: absolute;
     width: 100%;
-    top: 132px;
+    top: 120px;
+    padding: 10px;
     z-index: 999999;
     background: #ecebeb;
     border: 2px solid @brand-primary;

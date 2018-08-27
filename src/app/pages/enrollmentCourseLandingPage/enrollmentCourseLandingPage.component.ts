@@ -10,7 +10,7 @@ import { Constants } from '../../common/constants';
 
 export class EnrollmentCourseLandingPageComponent implements OnInit {
     public topics: boolean = true;
-    public dummy = ['1','2','3','4'];
+    public dummy = ['1', '2', '3', '4'];
     public selectedItem;
     public progressObj: any[];
     public imagePath = Constants.IMAGEPATH;
@@ -23,12 +23,12 @@ export class EnrollmentCourseLandingPageComponent implements OnInit {
 
     ngOnInit() {
         let hourSpent = this.global.getStorageDetail('timetaken');
-        hourSpent = hourSpent/60;
+        hourSpent = hourSpent / 60;
         hourSpent = Math.round(hourSpent);
         this.activateRoute.params.forEach(params => {
-            this.courseId = params["id"];
+            this.courseId = params['id'];
         });
-        let user  = this.global.getStorageDetail('user').data;
+        const user = this.global.getStorageDetail('user').data;
         user.courseEnrolled.filter((data) => {
             if (data._id === this.courseId) {
                 this.courseListData = data;
@@ -38,10 +38,10 @@ export class EnrollmentCourseLandingPageComponent implements OnInit {
         this.courseListData.timeline.filter((timeline) => {
             timeline.topics.filter((topic) => {
                 if (topic.markScore) {
-                    let score = topic.markScore * 100 / topic.questions.length-1;
+                    const score = topic.markScore * 100 / topic.questions.length - 1;
                     this.averageCourseScore = this.averageCourseScore + score / 2;
                 }
-            })
+            });
         });
         this.progressObj = [
             {
@@ -69,14 +69,14 @@ export class EnrollmentCourseLandingPageComponent implements OnInit {
     }
 
     accordin(event, newValue) {
-    console.log(newValue);
-    if (this.topics) {
-        this.topics = false;
-        this.selectedItem = newValue;
-    } else {
-        this.topics = true;
-        this.selectedItem = -1;
-    }
+        console.log(newValue);
+        if (this.topics) {
+            this.topics = false;
+            this.selectedItem = newValue;
+        } else {
+            this.topics = true;
+            this.selectedItem = -1;
+        }
     }
 
     learningPageUrl(data, chapterName, mark) {
@@ -87,16 +87,16 @@ export class EnrollmentCourseLandingPageComponent implements OnInit {
         } else {
             status = false;
         }
-        let courseObj = {
-            'courseId' : this.courseId,
-            'chapterName' : chapterName,
-            'topicName' : data.subTopics,
-            'timing' : data.timing,
-            'order' : data.order,
-            'description' : data.description,
-            'questionsLength' : (data.questions) ? data.questions.length-1 : 0,
-            'testStatus' : status
-        }
+        const courseObj = {
+            'courseId': this.courseId,
+            'chapterName': chapterName,
+            'topicName': data.subTopics,
+            'timing': data.timing,
+            'order': data.order,
+            'description': data.description,
+            'questionsLength': (data.questions) ? data.questions.length - 1 : 0,
+            'testStatus': status
+        };
         this.global.storeDataLocal('courselearn', courseObj);
         this.router.navigate(['courselearningpage', this.courseId]);
     }

@@ -12,7 +12,7 @@ import { SafePipe } from '../../common/videourl.component';
     providers: [ListingCourseProxy, CourseDetailsPageProxy, SafePipe]
 })
 
-export class courseDetailsPageComponent implements OnInit {
+export class CourseDetailsPageComponent implements OnInit {
     public categoryListData: any;
     public imagePath = Constants.IMAGEPATH;
     public courseDetails = [];
@@ -27,7 +27,7 @@ export class courseDetailsPageComponent implements OnInit {
     public reviewFormObj = {
         name: '',
         comment: '',
-        rating:  0,
+        rating: 0,
         emailId: '',
         courseId: '',
         status: 0
@@ -53,9 +53,9 @@ export class courseDetailsPageComponent implements OnInit {
         }
         // this.id = this.activateRoute.snapshot.params['id'];
         this.activateRoute.params.forEach(params => {
-            this.courseId = params["id"];
+            this.courseId = params['id'];
             this.categoryListingCourse(this.courseId);
-        })
+        });
         this.set = setInterval(this.defaultTab, 100);
     }
 
@@ -64,25 +64,25 @@ export class courseDetailsPageComponent implements OnInit {
             .subscribe((success: any) => {
                 this.categoryListData = success.data;
                 for (let i = 0; i < this.categoryListData.length; i++) {
-                    this.categoryListData[i].course.filter((data) => {
-                        if (id === data._id) {
+                    this.categoryListData[i].course.filter((currentCourse) => {
+                        if (id === currentCourse._id) {
                             this.courseDetails = [];
-                            this.courseDetails.push(data);
+                            this.courseDetails.push(currentCourse);
                             this.courseDetails[0].video = this.videourl.transform(this.courseDetails[0].video);
                             this.courseDetails.filter((data) => {
                                 if (this.user) {
                                     if (data.enrolledUser.length >= 1) {
                                         data.enrolledUser.filter((email) => {
                                             if (email.userEmailId === this.user.emailId) {
-                                              data.enrollBtn = false;                  
-                                            };
-                                          });
-                                    };
+                                                data.enrollBtn = false;
+                                            }
+                                        });
+                                    }
                                 }
                                 data.courseReview.filter((user) => {
                                     this.averageRate = this.averageRate + user.rating;
                                 });
-                                this.averageRate = this.averageRate/data.courseReview.length;
+                                this.averageRate = this.averageRate / data.courseReview.length;
                                 console.log(this.averageRate);
                             });
                             this.courseDetails[0].timeline.filter((topic) => {
@@ -95,11 +95,11 @@ export class courseDetailsPageComponent implements OnInit {
                         }
                     });
                 }
-                let h = Math.floor(this.timing / 60);
-                let m = this.timing % 60;
-                let hr = h < 10 ? '0' + h : h;
-                let min = m < 10 ? '0' + m : m;
-                this.courseTiming =  hr + ':' + min;
+                const h = Math.floor(this.timing / 60);
+                const m = this.timing % 60;
+                const hr = h < 10 ? '0' + h : h;
+                const min = m < 10 ? '0' + m : m;
+                this.courseTiming = hr + ':' + min;
                 console.log(this.courseTiming);
             });
     }
@@ -126,7 +126,7 @@ export class courseDetailsPageComponent implements OnInit {
         if (!this.user) {
             this.global.navigateToNewPage('/login');
         } else {
-            let courseObj = {
+            const courseObj = {
                 courseId: this.courseId,
                 courseName: this.courseDetails[0].courseName,
                 courseImage: this.courseDetails[0].imageLarge,
@@ -153,10 +153,10 @@ export class courseDetailsPageComponent implements OnInit {
                     }
                 });
                 if (!this.emailMatched) {
-                    this.reviewFormData(user,form);
+                    this.reviewFormData(user, form);
                 }
             } else {
-                this.reviewFormData(user,form);
+                this.reviewFormData(user, form);
             }
         } else {
             this.infoMessage = false;
@@ -170,15 +170,15 @@ export class courseDetailsPageComponent implements OnInit {
         this.reviewFormObj.rating = this.currentRate;
         this.reviewFormObj.courseId = this.courseDetails[0]._id;
         this.coursedetailspageProxy.courseReviewService(this.reviewFormObj)
-        .subscribe((success: any) => {
-            console.log(success);
-            form.reset();
-            this.infoMessage = false;
-            this.successMessage = true;
-            this.message = 'Review sent successfully !!!';
-            this.currentRate = 5;
-            this.categoryListingCourse(this.courseId);
-        });
+            .subscribe((success: any) => {
+                console.log(success);
+                form.reset();
+                this.infoMessage = false;
+                this.successMessage = true;
+                this.message = 'Review sent successfully !!!';
+                this.currentRate = 5;
+                this.categoryListingCourse(this.courseId);
+            });
     }
 
 }

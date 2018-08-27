@@ -33,7 +33,7 @@ export class CourseTestPageComponent implements OnInit {
     public message: any;
     public findQuestionNo: any;
     public passageAnswer = [];
-    public questionNumber: any
+    public questionNumber: any;
 
     constructor(public global: Global, public activateRoute: ActivatedRoute,
         public router: Router, public courseTestProxy: CourseTestPageProxy) { }
@@ -43,7 +43,7 @@ export class CourseTestPageComponent implements OnInit {
         if (!this.paramsData) {
             this.global.navigateToNewPage('/home');
         }
-        let user = this.global.getStorageDetail('user').data;
+        const user = this.global.getStorageDetail('user').data;
         user.courseEnrolled.filter((data) => {
             if (data._id === this.paramsData.courseId) {
                 data.timeline.filter((title) => {
@@ -73,16 +73,16 @@ export class CourseTestPageComponent implements OnInit {
 
     timeElapsed() {
         return Math.floor(this.seconds / 3600) + ':' + Math.floor(this.seconds / 60) + ':' + Math.floor(this.seconds % 60);
-    };
+    }
 
     questionIndex(index) {
         console.log(index);
-        let data = this.testData.questions;
+        const data = this.testData.questions;
         this.allQuestion = data;
-        let findIndex = [];
-        this.allQuestion.filter((data, index) => {
-            if (data[1] === '1' || data[1] === '0') {
-                findIndex.push(index);
+        const findIndex = [];
+        this.allQuestion.filter((findStatus, ind) => {
+            if (findStatus[1] === '1' || findStatus[1] === '0') {
+                findIndex.push(ind);
             }
         });
         this.findQuestionNo = findIndex;
@@ -98,9 +98,9 @@ export class CourseTestPageComponent implements OnInit {
             });
             for (let i = 0; i < this.questionobj[0].options.length; i++) {
                 this.questionobj[0].options[i] = this.questionobj[0].options[i].trim();
-            };
+            }
         } else if (data[index][1] === '1') {
-            let a = [];
+            const a = [];
             for (let i = 1; i <= data[index][4]; i++) {
                 a.push({
                     question: data[index + i][3],
@@ -121,7 +121,7 @@ export class CourseTestPageComponent implements OnInit {
                 for (let j = 0; j < this.questionobj[0].question[i].options.length; j++) {
                     this.questionobj[0].question[i].options[j] = this.questionobj[0].question[i].options[j].trim();
                 }
-            };
+            }
         }
         console.log(this.questionobj);
         this.startTimer();
@@ -191,7 +191,7 @@ export class CourseTestPageComponent implements OnInit {
                     this.userAnswer = this.questionAnswer;
                     console.log(this.userAnswer, this.questionAnswer, data.userAnswer);
                 }
-            })
+            });
         }
     }
 
@@ -247,14 +247,14 @@ export class CourseTestPageComponent implements OnInit {
             } else {
                 this.allQuestion[data.id][7] = 'false';
             }
-        })
+        });
     }
 
     submitTheMarkInDb() {
         let i = 0;
         this.testData.markScore = this.userScore;
         this.testData.allQuestionsWithAnswer = this.questionWithAnswer;
-        let user = this.global.getStorageDetail('user');
+        const user = this.global.getStorageDetail('user');
         user.data.courseEnrolled.filter((data) => {
             if (data._id === this.paramsData.courseId) {
                 data.timeline.filter((title) => {
@@ -282,7 +282,7 @@ export class CourseTestPageComponent implements OnInit {
                 console.log(success);
             });
         console.log(user);
-        let data = this.global.storeDataLocal('user', user);
+        const userData = this.global.storeDataLocal('user', user);
         this.global.deleteLocalData('courselearn');
     }
 

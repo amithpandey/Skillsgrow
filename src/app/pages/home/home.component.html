@@ -10,7 +10,11 @@
         <img [src]="imagePath + img.image" alt="Random first slide">
         <div class="banner-images-description">
           <h4 *ngIf="img.imageTitle">{{img.imageTitle}}</h4>
-          <p *ngIf="img.description">{{img.description}}</p>
+          <p *ngIf="img.description && img.description.length != 100">{{img.description}}</p>
+          <p *ngIf="img.description && img.description.length >= 101">{{img.description}}</p>
+          <div *ngIf="img.imageTitle && img.description">
+            <button routerLink="/register">Register now</button>
+          </div>
           <div *ngIf="img.link" class="image-link">
             <button>
               <a target="_blank" [href]="img.link">Click</a>
@@ -26,19 +30,19 @@
 <app-course-listing></app-course-listing>
 
 
-<!-- discover section - for md screns -->
+<!-- discover section -->
 
-<div class="container d-none d-md-block">
+<div class="container">
   <div class="row default-margin-top">
     <div class="col">
-      <h2>Discover more by</h2>
+      <h2>Discover by</h2>
     </div>
   </div>
-  <div class="row p-3">
-    <div (click)="allCourses('allCourses')" class="col-md-4 all-course">
+  <div class="row">
+    <div (click)="allCourses('allCourses')" class="col-md-4 col-sm-12 all-course">
       <span>All Courses</span>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 col-sm-12">
       <div class="row">
         <div (click)="allCourses('popularCourses')" class="col popular-course">
           <span>Popular Courses</span>
@@ -59,100 +63,107 @@
   </div>
 </div>
 
-<!-- discover section - for xs screns -->
-
-<div class="container d-md-none">
-  <div class="row default-margin-top">
-    <div class="col">
-      <h4>Discover More by</h4>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="form-group">
-        <select [(ngModel)]="discoverBy" id="discoverBy" class="form-control">
-          <option value="allCourses">All Course</option>
-          <option value="popularCourses">Popular Course</option>
-          <option value="freeCourses">Free Course</option>
-          <option value="latestCourses">Latest Course</option>
-          <option value="ratingCourses">Rating Course</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-12">
-      <button (click)="allCourses()" type="button" class="btn btn-block btn-primary">
-        View Cources
-      </button>
-    </div>
-  </div>
-</div>
 
 <!-- Review Section -->
-<div class="container">
-  <div class="row default-margin-top">
-    <div class="col-12 text-center">
-      <h2>Testimonials</h2>
-    </div>
-  </div>
-  <div class=""></div>
-  <!--<div class="row">
-    <div class="col">
-      <div ng2-carouselamos
-      [width]="mainWidth"
-      [items]="whatOthersTalkSection"
-      [$item]="item"
-      [$prev]="prevTemplate"
-      [$next]="nextTemplate"></div>
-      <ng-template #prevTemplate>
-        <span *ngIf="!smallDevice"><i class="fa fa-chevron-left arrow-left-right"></i></span>
-        <span *ngIf="smallDevice"><i class="fa fa-chevron-left"></i></span>
-      </ng-template>   
-      <ng-template #nextTemplate>
-          <span *ngIf="!smallDevice"><i style="margin-right: -100px;" 
-            class="fa fa-chevron-right arrow-left-right"></i></span>
-          <span *ngIf="smallDevice"><i class="fa fa-chevron-right"></i></span>
-      </ng-template>
-      <ng-template let-item let-i="index" #item>
+<div>
+    <div class="default-margin-top">
+        <div class="col-12 text-center">
+          <h2>What Others talk about us</h2>
+        </div>
+      </div>
+    <div
+    ng2-carouselamos
+    [width]="mainWidth"
+    [items]="whatOthersTalkSection"
+    [$item]="item"
+    [$prev]="prevTemplate"
+    [$next]="nextTemplate"
+  ></div>
+
+  <ng-template #prevTemplate>
+      <span *ngIf="!smallDevice"><i style="position: relative; left: 61px;" class="fa fa-chevron-left arrow-left-right"></i></span>
+      <span *ngIf="smallDevice"><i class="fa fa-chevron-left"></i></span>
+    </ng-template>
+     
+    <ng-template #nextTemplate>
+        <span *ngIf="!smallDevice"><i class="fa fa-chevron-right arrow-left-right"></i></span>
+        <span *ngIf="smallDevice"><i class="fa fa-chevron-right"></i></span>
+    </ng-template>
+
+    <ng-template let-item let-i="index" #item>
         <div [ngStyle]="{'min-width': mediaWidth +'px'}">
-          <div class="row default-margin-top" style="margin-left: 10px;">
-              <div class="col-12">
-                <div class="row">
-                  <div class="col">
-                    <div class="message-content text-justify">{{item.comment}}</div>
+            <div class="row default-margin-top" style="margin-left: 10px;">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col">
+                      <div class="message-content text-justify">{{item.comment}}</div>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col default-margin-top">
-                    <div class="image-container-review">
-                      <img [src]="'assets/image/dummyuser.png'" />
-                      <div class="title">
-                        <span class="name">{{item.name}}</span>
-                        <span class="course">{{item.occupation}}</span>
+                  <div class="row">
+                    <div class="col default-margin-top">
+                      <div class="image-container-review">
+                        <img [src]="'assets/image/logosvg.svg'" />
+                        <div class="title">
+                          <span class="name">{{item.name}}</span>
+                          <span class="course">{{item.occupation}}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
         </div>
       </ng-template>
-    </div>
-  </div>-->
-  <div class="row testimonials">
-    <div class="col-12">
-      <div class="testimonials-pic">
-        <div class="left"><i class="fa fa-angle-left"></i></div>
-        <div class="img"><img [src]="'assets/image/dummyuser.png'" /></div>
-        <div class="right"><i class="fa fa-angle-right"></i></div>
-      </div>
-    </div>
-    <div class="col-12 text-center">
-      <h5 class="uname">USER NAME ~ OCCUPATION</h5>
-      <p class="ucontent">Skillsgrow's self-paced module encouraged me to get more proactive with my learning. 
-        I engaged with the material, took better notes, 
-        and staggered the classes to fit in with my busy schedule at Mindtree.</p>
+
+</div>
+<!-- <div class="container">
+  <div class="row default-margin-top">
+    <div class="col">
+      <h2>What Others talk about us</h2>
     </div>
   </div>
-</div>
+  <div class="row default-margin-top">
+    <div class="col-1 text-center">
+      <span class="toggle-round-menu">
+        <i class="fa fa-angle-left"></i>
+      </span>
+    </div>
+    <div class="col-10">
+      <div class="row">
+        <div class="col">
+          <div class="message-content text-justify">{{whatOthersTalkSection[0].comment}}</div>
+        </div>
+        <div class="col">
+          <div class="message-content text-justify">{{whatOthersTalkSection[1].comment}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col default-margin-top">
+          <div class="image-container-review">
+            <img [src]="'assets/image/dummyuser.png'"/>
+            <div class="title">
+              <span class="name">{{whatOthersTalkSection[0].name}}</span>
+              <span class="course">{{whatOthersTalkSection[0].occupation}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col default-margin-top">
+          <div class="image-container-review">
+            <img [src]="'assets/image/dummyuser.png'" />
+            <div class="title">
+              <span class="name">{{whatOthersTalkSection[1].name}}</span>
+              <span class="course">{{whatOthersTalkSection[1].occupation}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-1 text-center">
+      <span class="toggle-round-menu">
+        <i class="fa fa-angle-right"></i>
+      </span>
+    </div>
+  </div>
+</div> -->
 
 <app-footer></app-footer>

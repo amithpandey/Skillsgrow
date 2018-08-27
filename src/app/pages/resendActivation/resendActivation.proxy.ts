@@ -11,14 +11,14 @@ import { HttpClient } from '@angular/common/http';
 export class ResendActivationProxy {
     private history = [];
 
-    constructor(public http: HttpUtil, public mannualHttp: HttpClient) {}
+    constructor(public http: HttpUtil, public mannualHttp: HttpClient) { }
 
     resendActivationData(data) {
-        return this.http.doPost(Constants.APIPATH + 'admin/resend',data, false);
+        return this.http.doPost(Constants.APIPATH + 'admin/resend', data, false);
     }
 
     resendLink(data) {
-        return this.http.doPut(Constants.APIPATH + 'admin/resendlink',data, false);
+        return this.http.doPut(Constants.APIPATH + 'admin/resendlink', data, false);
     }
 
 }

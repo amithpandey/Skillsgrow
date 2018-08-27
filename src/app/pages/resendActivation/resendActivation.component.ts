@@ -22,36 +22,36 @@ export class ResendActivationComponent implements OnInit {
 
     constructor(public global: Global,
         public activateRoute: ActivatedRoute, public router: Router,
-    public resendActivationProxy: ResendActivationProxy) {
+        public resendActivationProxy: ResendActivationProxy) {
     }
 
     ngOnInit() {
         this.activateRoute.params.forEach(params => {
-            this.token = params["token"];
+            this.token = params['token'];
         });
     }
 
     onSubmit() {
         this.resendActivationProxy.resendActivationData(this.resendFormObj)
-        .subscribe((success: any) => {
-            console.log(success);
-            if (success.result) {
-                this.resendFormObj.userName = success.data.userName;
-                this.resendActivationProxy.resendLink(this.resendFormObj)
-                .subscribe((success: any) => {
+            .subscribe((success: any) => {
                 console.log(success);
                 if (success.result) {
-                    this.successMessage = true;
-                    this.errorMessage = false;
+                    this.resendFormObj.userName = success.data.userName;
+                    this.resendActivationProxy.resendLink(this.resendFormObj)
+                        .subscribe((succ: any) => {
+                            console.log(succ);
+                            if (succ.result) {
+                                this.successMessage = true;
+                                this.errorMessage = false;
+                                this.message = succ.message;
+                            }
+                        });
+                } else {
+                    this.errorMessage = true;
+                    this.successMessage = false;
                     this.message = success.message;
                 }
-              });   
-            } else {
-                this.errorMessage = true;
-                this.successMessage = false;
-                this.message = success.message;
-            }
-        })
+            });
     }
 
 }

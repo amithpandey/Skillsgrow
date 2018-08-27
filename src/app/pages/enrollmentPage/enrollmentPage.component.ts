@@ -16,7 +16,7 @@ export class EnrollmentPageComponent implements OnInit {
     public imagePath = Constants.IMAGEPATH;
 
     constructor(public global: Global, public enrollmentPageProxy: EnrollmentPageProxy,
-    public router: Router, public videourl: SafePipe) {
+        public router: Router, public videourl: SafePipe) {
     }
 
     ngOnInit() {
@@ -25,46 +25,46 @@ export class EnrollmentPageComponent implements OnInit {
             this.global.navigateToNewPage('/home');
         } else {
             this.courseData.videoUrl = this.videourl.transform(this.courseData.videoUrl);
-            console.log(this.courseData.videoUrl)
+            console.log(this.courseData.videoUrl);
         }
     }
 
     enrollment() {
-        let user = this.global.getStorageDetail('user');
-        let userEnrollmentData = {
+        const user = this.global.getStorageDetail('user');
+        const userEnrollmentData = {
             courseId: this.courseData.courseId,
             enrolledOn: new Date(),
             userEmailId: user.data.emailId,
             userName: user.data.userName
-        }
+        };
         this.enrollmentPageProxy.courseEnrolledService(userEnrollmentData)
-        .subscribe((success: any) => {
-            console.log(success);
-            this.userCourseEnrollment();
-        });
+            .subscribe((success: any) => {
+                console.log(success);
+                this.userCourseEnrollment();
+            });
     }
 
     userCourseEnrollment() {
-        let user = this.global.getStorageDetail('user');
+        const user = this.global.getStorageDetail('user');
         this.enrollmentPageProxy.listCategories()
-        .subscribe((success: any) => {
-            let courses = success.data;
-            courses.filter((data) => {
-                data.course.filter((course) => {
-                    if (this.courseData.courseId === course._id) {
-                        course.userId = user.data._id;
-                        course.enrolledOn = new Date();
-                        this.enrollmentPageProxy.userCourseEnrolledService(course)
-                        .subscribe((succ: any) => {
-                            console.log(succ);
-                            user.data.courseEnrolled.push(course);
-                            this.global.storeDataLocal('user', user);
-                            this.router.navigate(['/enrollmentcourselandingpage', course._id]);
-                        });
-                    }
+            .subscribe((success: any) => {
+                const courses = success.data;
+                courses.filter((data) => {
+                    data.course.filter((course) => {
+                        if (this.courseData.courseId === course._id) {
+                            course.userId = user.data._id;
+                            course.enrolledOn = new Date();
+                            this.enrollmentPageProxy.userCourseEnrolledService(course)
+                                .subscribe((succ: any) => {
+                                    console.log(succ);
+                                    user.data.courseEnrolled.push(course);
+                                    this.global.storeDataLocal('user', user);
+                                    this.router.navigate(['/enrollmentcourselandingpage', course._id]);
+                                });
+                        }
+                    });
                 });
             });
-        });
     }
 
 }

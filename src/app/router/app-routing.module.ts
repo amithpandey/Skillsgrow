@@ -1,8 +1,11 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent, LoginComponent, RegisterComponent, AllCoursesComponent, UserDashboardComponent,
-courseDetailsPageComponent, EnrollmentPageComponent, EnrollmentCourseLandingPageComponent, CourseLearningPageComponent, 
-CourseTestPageComponent, ResetPasswordComponent, AccountActivationComponent, ResendActivationComponent, ComingSoonComponent, ErrorPageComponent } from './../pages/all';
+import {
+  HomeComponent, LoginComponent, RegisterComponent, AllCoursesComponent, UserDashboardComponent,
+  CourseDetailsPageComponent, EnrollmentPageComponent, EnrollmentCourseLandingPageComponent,
+  CourseLearningPageComponent, CourseTestPageComponent, ResetPasswordComponent,
+  AccountActivationComponent, ResendActivationComponent, ComingSoonComponent, ErrorPageComponent
+} from './../pages/all';
 
 const routes: Routes = [
   {
@@ -24,7 +27,7 @@ const routes: Routes = [
     path: 'userdashboard', component: UserDashboardComponent
   },
   {
-    path: 'coursedetailspage/:id', component: courseDetailsPageComponent
+    path: 'coursedetailspage/:id', component: CourseDetailsPageComponent
   },
   {
     path: 'enrollmentpage/:id', component: EnrollmentPageComponent

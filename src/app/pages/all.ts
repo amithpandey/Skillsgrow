@@ -7,7 +7,7 @@ export * from './courseDetailsPage/courseDetailsPage.component';
 export * from './enrollmentPage/enrollmentPage.component';
 export * from './courseLearningPage/courseLearningPage.component';
 export * from './courseTestPage/courseTestPage.component';
-export * from './resetpassword/resetpassword.component'
+export * from './resetpassword/resetpassword.component';
 export * from './activate/activate.component';
 export * from './resendActivation/resendActivation.component';
 export * from './comingsoon/comingsoon.component';

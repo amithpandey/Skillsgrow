@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
                 this.forgotSuccessMessage = true;
                 this.message = success.message;
             }
-        })
+        });
     }
 
 }

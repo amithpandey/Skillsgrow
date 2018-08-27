@@ -14,7 +14,7 @@ export class ResetPasswordProxy {
     constructor(public http: HttpUtil, public mannualHttp: HttpClient) {}
 
     resetPasswordService(token) {
-        return this.http.doGet(Constants.APIPATH + 'admin/resetpassword/'+token, false);
+        return this.http.doGet(Constants.APIPATH + 'admin/resetpassword/' + token, false);
     }
 
     savePasswordService(data) {

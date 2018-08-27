@@ -49,7 +49,7 @@ export class HttpUtil {
 
     private prepareDefaultHeader() {
         const token: any = this.global.getStorageDetail('token');
-        let productionMode: any = this.global.getStorageDetail('develop');
+        const productionMode: any = this.global.getStorageDetail('develop');
         this.defaultHeaders = {
             headers: new HttpHeaders({
                 'x-access-token': (token) ? token.token : '',

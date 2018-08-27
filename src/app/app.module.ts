@@ -9,10 +9,12 @@ import { LocalStorageModule } from 'angular-2-local-storage';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './router/app-routing.module';
-import { HomeComponent, LoginComponent, RegisterComponent, AllCoursesComponent,
-UserDashboardComponent, courseDetailsPageComponent, EnrollmentPageComponent, EnrollmentCourseLandingPageComponent,
-CourseLearningPageComponent, CourseTestPageComponent, ResetPasswordComponent, AccountActivationComponent, ResendActivationComponent,
-ComingSoonComponent, ErrorPageComponent} from './pages/all';
+import {
+  HomeComponent, LoginComponent, RegisterComponent, AllCoursesComponent,
+  UserDashboardComponent, CourseDetailsPageComponent, EnrollmentPageComponent, EnrollmentCourseLandingPageComponent,
+  CourseLearningPageComponent, CourseTestPageComponent, ResetPasswordComponent, AccountActivationComponent, ResendActivationComponent,
+  ComingSoonComponent, ErrorPageComponent
+} from './pages/all';
 import { InfoBarComponent } from './components/info-bar/info-bar.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { LoginNavigationComponent } from './components/login-navigation/login-navigation.component';
@@ -37,7 +39,7 @@ import { Ng2CarouselamosModule } from 'ng2-carouselamos';
     RegisterComponent,
     AllCoursesComponent,
     UserDashboardComponent,
-    courseDetailsPageComponent,
+    CourseDetailsPageComponent,
     EnrollmentPageComponent,
     EnrollmentCourseLandingPageComponent,
     CourseLearningPageComponent,
@@ -70,7 +72,7 @@ import { Ng2CarouselamosModule } from 'ng2-carouselamos';
     }),
     NgHttpLoaderModule,
     NgCircleProgressModule.forRoot({}),
-    Ng2CarouselamosModule, 
+    Ng2CarouselamosModule,
   ],
   providers: [
     HttpUtil,

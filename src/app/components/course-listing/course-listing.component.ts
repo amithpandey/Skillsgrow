@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListingCourseProxy } from './course-listing.proxy';
 import { Router } from '@angular/router';
 import { Global } from '../../common/global';
-import { Constants } from '../../common/constants'
+import { Constants } from '../../common/constants';
 
 @Component({
   selector: 'app-course-listing',
@@ -46,7 +46,7 @@ export class CourseListingComponent implements OnInit {
               this.popularTitle = true;
             }
           });
-        };
+        }
         this.categoryListData.filter((data) => {
           data.course.filter((course) => {
             if (this.user) {
@@ -54,18 +54,18 @@ export class CourseListingComponent implements OnInit {
                 course.enrolledUser.filter((email) => {
                   if (email.userEmailId === this.user.emailId) {
                     course.enrollBtn = false;
-                  };
+                  }
                 });
-              };
+              }
             }
             if (course.courseReview.length >= 1) {
-              course.courseReview.filter((data) => {
+              course.courseReview.filter((review) => {
                 if (!course.ratings) {
-                  this.averageRating = this.averageRating + data.rating;
+                  this.averageRating = this.averageRating + review.rating;
                   course.ratings = this.averageRating;
                   this.averageRating = 0;
                 } else {
-                  course.ratings = course.ratings + data.rating;
+                  course.ratings = course.ratings + review.rating;
                 }
               });
               course.ratings = course.ratings / course.courseReview.length;
@@ -80,23 +80,23 @@ export class CourseListingComponent implements OnInit {
                   course.timing = course.timing + time.timing;
                 }
               });
-            })
-          })
-        })
+            });
+          });
+        });
         this.convertMinuteInTime(this.categoryListData);
         console.log(this.categoryListData.length);
       });
   }
 
   convertMinuteInTime(data) {
-    data.filter((data) => {
-      data.course.filter((timing) => {
-        let h = Math.floor(timing.timing / 60);
-        let m = timing.timing % 60;
-        let hr = h < 10 ? '0' + h : h;
-        let min = m < 10 ? '0' + m : m;
+    data.filter((categoryListData) => {
+      categoryListData.course.filter((timing) => {
+        const h = Math.floor(timing.timing / 60);
+        const m = timing.timing % 60;
+        const hr = h < 10 ? '0' + h : h;
+        const min = m < 10 ? '0' + m : m;
         timing.timing = hr + ':' + min;
-      })
+      });
     });
   }
 
@@ -110,7 +110,7 @@ export class CourseListingComponent implements OnInit {
       if (!this.global.getStorageDetail('user')) {
         this.global.navigateToNewPage('/login');
       } else {
-        let courseObj = {
+        const courseObj = {
           courseId: id,
           courseName: courseName,
           courseImage: image,
