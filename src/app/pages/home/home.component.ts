@@ -158,6 +158,6 @@ export class HomeComponent implements OnInit {
       this.mainWidth = 1000;
       this.smallDevice = false;
     }
-};
+  };
 
 }
