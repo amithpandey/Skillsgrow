@@ -4,6 +4,24 @@ app-home {
             width: 100%;
         }
     }
+    .banner-container {
+        .carousel-control-prev, .carousel-control-next {
+            display: none;
+        }
+    }
+    .reviews {
+        .carousel-control-prev, .carousel-control-next {
+            align-items: unset;
+            .carousel-control-prev-icon {
+                margin-top: 150px;
+                background-image: url("./../../../assets/image/back.png") !important;
+            }
+            .carousel-control-next-icon {
+                margin-top: 150px;
+                background-image: url("./../../../assets/image/right-arrow.png") !important;
+            }
+        }
+    }
     .all-course {
         background: url("./../../../assets/image/all-course.jpg") no-repeat;
         background-size: 100% 100%;
@@ -285,34 +303,4 @@ app-home {
             }
         }
     }
-
-    .dummy-div {
-        width: 800px;
-        @media only screen and (max-width: 1000px) {
-            width: 720px;
-        }
-        @media only screen and (max-width: 770px) {
-            width: 540px;
-        }
-        @media only screen and (max-width: 600px) {
-            width: 540px;
-        }
-        @media only screen and (max-width: 560px) {
-            width: 540px;
-        }
-        @media only screen and (max-width: 528px) {
-            width: 453px;
-        }
-        @media only screen and (max-width: 450px) {
-            width: 420px;
-        }
-        @media only screen and (max-width: 400px) {
-            width: 385px;
-        }
-    }
-
-    .carousel-indicators .active {
-        background-color: #f7941f;
-    }
-
 }

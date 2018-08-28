@@ -3,7 +3,7 @@
 <app-login-navigation *ngIf="false"></app-login-navigation>
 
 <!-- banner section -->
-<ngb-carousel style="outline: none">
+<ngb-carousel class="banner-container" style="outline: none">
   <ng-container *ngFor="let img of listBannerImagesData">
     <ng-container *ngIf="img.status != 1">
       <ng-template ngbSlide>
@@ -104,54 +104,36 @@
 
 
 <!-- Review Section -->
-<div id="slider">
+<div class="container reviews">
   <div class="row default-margin-top">
-    <div class="col-8 offset-2">
-      <h2>Testimonials</h2>
-    </div>
-  </div>
-  <ul id="sliderwrap">
-    <li *ngFor="let x of whatOthersTalkSection">
-      <div class="row testimonials">
-        <div class="col-8 offset-2 text-center">
-          <div class="testimonials-pic">
-            <div class="img">
-              <img [src]="'assets/image/logosvg.svg'" />
-            </div>
-          </div>
-        </div>
-        <div class="col-8 offset-2 text-center">
-          <h5 class="uname">{{x.name}} ~ {{x.occupation}}</h5>
-          <p class="ucontent">{{x.comment}}</p>
-        </div>
-      </div>
-    </li>
-  </ul>
-  <span>
-    <i class="fa fa-chevron-left" id="prev"></i>
-  </span>
-  <span>
-    <i class="fa fa-chevron-right" id="next"></i>
-  </span>
-</div>
-<!-- <div class="container">
-  <div class="row default-margin-top">
-    <div class="col-12 text-center">
-      <h2>Testimonials</h2>
-    </div>
-  </div>
-  <div class="row testimonials" *ngFor="let x of whatOthersTalkSection">
     <div class="col-12">
-      <div class="testimonials-pic">
-        <div class="left"><i class="fa fa-angle-left"></i></div>
-        <div class="img"><img [src]="'assets/image/logosvg.svg'" /></div>
-        <div class="right"><i class="fa fa-angle-right"></i></div>
-      </div>
-    </div>
-    <div class="col-12 text-center">
-      <h5 class="uname">{{x.name}} ~ {{x.occupation}}</h5>
-      <p class="ucontent">{{x.comment}}</p>
+      <h2>Testimonials</h2>
     </div>
   </div>
-</div> -->
+  <div class="row">
+    <div class="col-12">
+      <ngb-carousel style="outline: none">
+        <ng-container>
+          <ng-container>
+            <ng-template *ngFor="let item of whatOthersTalkSection" ngbSlide>
+              <div class="row testimonials">
+                <div class="col-12 text-center">
+                  <div class="testimonials-pic">  
+                    <div class="img">
+                      <img [src]="'assets/image/logosvg.svg'" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <h5 class="uname">{{item.name}} ~ {{item.occupation}}</h5>
+                  <p class="ucontent">{{item.comment}}</p>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </ng-container>
+      </ngb-carousel>
+    </div>
+  </div>
+</div>
 <app-footer></app-footer>
