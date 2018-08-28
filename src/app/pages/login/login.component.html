@@ -1,9 +1,9 @@
 <app-navigation></app-navigation>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-md-10 offset-1">
+        <div class="col-md-12">
             <div class="row login-design" *ngIf="loginForm">
-                <div class="col-6 text-center login-content">
+                <div class="col-12 col-md-6 text-center login-content">
                     <h3>ABOUT SKILLSGROW</h3>
                     <p class="text-justify">
                         skillsgrow.com is an online career skills development company that helps anyone develop their technical, 
@@ -11,7 +11,7 @@
                         professional goals. 
                         Choose from over 200 career skills enhancement online courses and internship programs. </p>
                 </div>
-                <div class="col-6 login-field">
+                <div class="col-12 col-md-6 login-field">
                     <div *ngIf="alertClass" class="alert alert-danger alert-dismissible">
                         <strong>Error!</strong> {{message}}
                         <div *ngIf="expired" class="default-margin-top">
@@ -45,26 +45,27 @@
                 </div>
             </div>
             <div class="row login-design" *ngIf="forgotPasswordForm">
-                <div class="col-6 text-center login-content">
+                <div class="col-12 col-md-6 text-center login-content">
                     <h3>SKILLSGROW</h3>
                     <p class="text-justify">
                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
                         penatibus et magnis dis parturient montes</p>
                 </div>
-                <div class="col-6 login-field">
+                <div class="col-12 col-md-6 login-field">
                     <div *ngIf="forgotErrorMessage" class="alert alert-danger">
                         <strong>Error!</strong> {{message}}
                     </div>
                     <div *ngIf="forgotSuccessMessage" class="alert alert-success">
                         <strong>Success!</strong> {{message}}
                     </div>
-                    <form class="forgot-password-form">
+                    <form>
                         <div class="form-group">
                             <label>Enter Your Email Id to reset your password</label>
                             <input type="text" class="form-control" name="resetpassword" placeholder="Enter your register Email Id" [(ngModel)]="forPassword">
                         </div>
                         <div class="text-center">
-                            <button class="btn btn-info btn-block" (click)="resetPassword()">Reset Password</button>
+                            <button class="btn btn-info btn-block" 
+                            (click)="resetPassword()">Reset Password</button>
                         </div>
                     </form>
                 </div>
