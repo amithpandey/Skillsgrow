@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
       }
 
     });
-    // this.responsiveSlider();
+    //this.responsiveSlider();
   }
 
   startTimer() {
@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
     let sliderWidth = slider.offsetWidth;
     const slideList = document.getElementById('sliderwrap');
     let count = 1;
-    const items = this.sampleCount.length; // slideList.querySelectorAll('li').length;
+    const items = this.items.length; // slideList.querySelectorAll('li').length;
     const prev = document.getElementById('prev');
     const next = document.getElementById('next');
 

@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:500&css);
 @import './../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import './../../node_modules/font-awesome/css/font-awesome.min.css';
 @import './variable.less';
@@ -8,9 +9,8 @@
 @import './../app/pages/home/home.component.less';
 @import './../app/components/footer/footer.component.less';
 
-@font-face {
-    font-family: "myFont";
-    src: url('./../assets/font/montserrat/Montserrat-Regular.ttf');
+body{
+    font-family: 'Montserrat';
 }
 
 .default-margin-top {
@@ -807,7 +807,7 @@ p{
     font-size: 23px;
     background: white;
     padding: 20px;
-    font-family: myFont;
+    font-family: 'Montserrat';
     border-bottom: 1px solid #c1c1c1;
     -webkit-clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
     clip-path: polygon(0% 0%, 100% 0%, 60% 120%, 0% 100%);
@@ -817,11 +817,14 @@ p{
         color: #002d38;
         margin-top: 90px;
         margin-left: 15px;
+        border: none;
+        text-align: left;
     }
     p{
         color: #002d38;
         font-size: 16px;
-        margin-left: 15px;
+        margin-left: 25px;
+        width: 65%;
     }
     button{
         padding: 8px 35px;
@@ -832,24 +835,34 @@ p{
         color: white;
         margin-left: 20px;
         cursor: pointer;
+        outline: none;
         
         a{
             color: #0f2310;
         }
     }
-    @media only screen and (max-width: 850px) {
-        top: 14px;
-        right: 43px;
-        width: 178px;
-        font-size: 12px;
-        padding: 4px;
+}
 
-        h4{
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-    }
+.banner-image-content-for-mobile{
+ font-size: 18px;
+ font-weight: 600;
+
+ .img-description{
+     font-size: 16px;
+     color: @brand-secondary;
+     font-weight: 500;
+ }
+ 
+ button{
+    padding: 8px 35px;
+    border-radius: 50px;
+    font-size: 15px;
+    background: #f7941f;
+    border: 1px solid;
+    color: white;
+    margin-top: 15px;
+    cursor: pointer;
+ }
 }
 
 body{
@@ -868,9 +881,7 @@ tspan{
 #slider {
     position: relative;
     width: 100%;
-    height: 550px;
     overflow: hidden;
-    box-shadow:  0 0 30px rgba(0,0,0,0.3);
 
     ul{
         position: relative;
@@ -893,38 +904,21 @@ tspan{
             &:nth-child(1) {
                 background-color: white;
             }
+            @media only screen and (max-width: 550px) {
+                width: 96.4vw;
+            }
+
         }
     }
 
     #prev, #next {
-        width: 70px;
-        line-height: 50px;
-        border-radius: 50%;
-        font-size: 2rem;
-        text-shadow:  0 0 20px rgba(0,0,0,0.6);
-        text-align: center;
         position: absolute;
         top: 50%;
-        transform: translate(-50%);
-        transition: all 150ms ease;
+        font-size: 20px;
         cursor: pointer;
-        background: @brand-green; /* Old browsers */
-        background: -moz-linear-gradient(left, #38baae 0%, #38baae 28%, #0d88aa 70%, #0d88aa 99%); 
-        background: -webkit-linear-gradient(left, #38baae 0%,#38baae 28%,#0d88aa 70%,#0d88aa 99%);
-        background: @brand-gradient; 
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#38baae', endColorstr='#0d88aa',GradientType=1 );
-        color: white;
-        padding: 15px;
-        height: 70px;
-        box-shadow: black 5px 10px 25px -6px;
-
-        &:hover {
-            background-color: rgba(0,0,0,0.5);
-            text-shadow: 0;
-        }
     }
     #prev{
-        left: 100px;
+        left: 50px;
     }
     #next{
         right: 50px;
@@ -1046,16 +1040,15 @@ tspan{
     outline: none;
   }
 
-  /* .banner-images-description {
-    position: absolute;
-    top: 0;
-    color: black;
-    height: 350px;
-    width: 500px;
-    font-size: 23px;
-    background: #c1c1c1;
+h2, h4 {
+    font-size: 25px;
     text-align: center;
-    padding: 20px;
-    -webkit-clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
-    clip-path: polygon(0% 0%, 100% 0%, 60% 120%, 0% 100%);
-} */
+    font-family: 'Montserrat';
+    color: @brand-secondary !important;
+    border-bottom: thin solid @brand-secondary;
+    border-top: thin solid @brand-secondary;
+    padding: 10px;
+} 
+.carousel-control-prev, .carousel-control-next {
+    display: none;
+}
