@@ -2,7 +2,6 @@ app-home {
     ngb-carousel {
         img {
             width: 100%;
-            height: 350px;
         }
     }
     .all-course {
@@ -223,4 +222,97 @@ app-home {
             }
         }
     }
+    .testimonials {
+        font-family: 'Montserrat';
+        .testimonials-pic {
+            display: inline-flex;
+            width: 100%;
+            position: relative;
+            text-align: center;
+            .left {
+                width: 5%;
+            }
+            .img {
+                width: 100%;
+                img {
+                    margin: 15px 0px;
+                    border-radius: 50%;
+                    box-shadow: @brand-secondary 0px 0px 5px 2px;
+                    width: 200px;
+                    height: 200px;
+                }
+            }
+            .right {
+                width: 5%;
+            }
+            .fa {
+                color: @brand-secondary;
+                font-size: 3em;
+                margin-top: 95px;
+                cursor: pointer;
+            }
+
+        }
+        .uname {
+            font-weight: bolder;
+            font-size: 15px;
+            font-style: italic;
+            color: #41396e;
+        }
+        .ucontent {
+            margin-bottom: 15px;
+            padding: 40px;
+            background-color: @brand-secondary;
+            color: white;
+
+            &:before {
+                font-family:Arial;
+                content: "\201C";
+                color: white;
+                font-size:4em;
+                position: absolute;
+                left: 25px;
+                top: 15px;
+            }
+             &:after {
+                font-family:Arial;
+                content: "\201D";
+                color: white;
+                font-size:4em;
+                position: absolute;
+                right: 25px;
+                bottom: -35px;
+            }
+        }
+    }
+
+    .dummy-div {
+        width: 800px;
+        @media only screen and (max-width: 1000px) {
+            width: 720px;
+        }
+        @media only screen and (max-width: 770px) {
+            width: 540px;
+        }
+        @media only screen and (max-width: 600px) {
+            width: 540px;
+        }
+        @media only screen and (max-width: 560px) {
+            width: 540px;
+        }
+        @media only screen and (max-width: 528px) {
+            width: 453px;
+        }
+        @media only screen and (max-width: 450px) {
+            width: 420px;
+        }
+        @media only screen and (max-width: 400px) {
+            width: 385px;
+        }
+    }
+
+    .carousel-indicators .active {
+        background-color: #f7941f;
+    }
+
 }

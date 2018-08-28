@@ -12,9 +12,6 @@ app-navigation {
         .navigation-container {
             .top_nav {
                 padding: 15px 25px;
-                @media only screen and (max-width: 450px) {
-                    padding: 0;
-                }
             }
         }
         .nav-link {
@@ -28,7 +25,7 @@ app-navigation {
                 color: black;
                 transition: 0.1s;
                 cursor: pointer;
-                font-weight: 600 !important;
+                font-weight: 500 !important;
                  
                 i {
                     font-weight: bold;
@@ -42,10 +39,12 @@ app-navigation {
     }
 }
 
-.reponsive-search {
-
-    @media only screen and (max-width: 780px) {
+@media only screen and (max-width: 780px) {
+    .reponsive-search {
         width: 100%;
+        .input-group {
+            flex-wrap: inherit;
+        }
     }
 }
 

@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   public x: any;
   public mainWidth: number;
   public smallDevice: boolean = false;
+  public discoverBy: string = 'allCourses';
 
   constructor(public global: Global, public homeproxy: HomeProxy,
     public router: Router) { }
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
       {
         name: 'Gokul',
         comment: 'Providing great learning opportunities for students through Skillsgrow allows us to ensure' +
-          'that we are bringing the best quality learning to our University.',
+          ' that we are bringing the best quality learning to our University.',
         status: 0,
         photo: '',
         occupation: 'Placement Director - Bharath University'
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
       {
         name: 'Ajith Kumar',
         comment: 'Freshers come with a diverse set of skills, but often need to develop additional' +
-          'technical competencies to find careers in' +
+          ' technical competencies to find careers in' +
           'the rapidly evolving workforce. Skillsgrow offers relevant training from top educators' +
           'that our new recruits can do at their own pace, wherever they are – empowering them with the skills they need to achieve career success',
         status: 0,
@@ -81,10 +82,7 @@ export class HomeComponent implements OnInit {
         occupation: 'Anna University'
       }
     ];
-    // this.responsiveSlider();
-    this.x = window.matchMedia("(max-width: 1100px)");
-    this.myFunction(this.x); // Call listener function at run time
-    this.x.addListener(this.myFunction); // Attach listener function on state changes
+    this.responsiveSlider();
   }
 
   bannerImagesList() {
@@ -96,7 +94,11 @@ export class HomeComponent implements OnInit {
   }
 
   allCourses(type) {
-    this.router.navigate(['allcourses', type]);
+    if (type) {
+      this.router.navigate(['allcourses', type]);
+    } else {
+      this.router.navigate(['allcourses', this.discoverBy]);
+    }
   }
 
   responsiveSlider() {
@@ -145,18 +147,6 @@ export class HomeComponent implements OnInit {
     setInterval(function () {
       nextSlide();
     }, 8000);
-  }
-
-  myFunction(x) {
-    if (x.matches) { // If media query matches
-      this.mediaWidth = 350;
-      this.mainWidth = 350;
-      this.smallDevice = true;
-    } else {
-      this.mediaWidth = 500;
-      this.mainWidth = 1000;
-      this.smallDevice = false;
-    }
   }
 
 }
